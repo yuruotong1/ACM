@@ -24,8 +24,7 @@ public:
                          rec.push_back(nums[j]);
                          rec.push_back(nums[k]);
                         vector<int> linshi=eliminateRepetition(rec2,rec);
-                        if(false==linshi.empty())
-                         rec2.push_back(linshi);
+                        if(false==linshi.empty()) rec2.push_back(linshi);
                          rec.clear();
                     }
 
