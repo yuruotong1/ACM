@@ -23,9 +23,18 @@ public:
                          rec.push_back(nums[i]);
                          rec.push_back(nums[j]);
                          rec.push_back(nums[k]);
-                        vector<int> linshi=eliminateRepetition(rec2,rec);
-                        if(false==linshi.empty()) rec2.push_back(linshi);
-                         rec.clear();
+                         sort(rec.begin(),rec.end());
+                         for(vector<int>l:rec2){
+                             if(rec==l){
+                                 rec.clear();
+                                 break;
+                             }
+                         }
+                        if(false==rec.empty()) {
+                            rec2.push_back(rec);
+                            rec.clear();
+                        }
+
                     }
 
                 }
@@ -33,31 +42,7 @@ public:
         }
         return rec2;
     }
-    vector<int> eliminateRepetition( vector<vector<int>> rec2,vector<int> nums){
 
-        for(vector<int>num:rec2){
-            int count=0;
-            for(int i:nums){
-                for(int j=0;j<num.size();j++){
-                    if(i==num[j]) {
-                        count++;
-                        if (count==nums.size()){
-                            nums.clear();
-                            return nums;
-                        }
-                        num.erase(num.begin()+j);
-                        break;
-                         }
-                    }
-                if(count==0) break;
-
-
-                }
-            }
-
-           return nums;
-
-        }
 
 };
 int main(){
