@@ -16,13 +16,22 @@ public:
             return rec2;
         }
         vector<int> rec;
-        for(int i=0;i<nums.size()-2;i++){
-            for(int j=i+1;j<nums.size()-1;j++){
-                for(int k=j+1;k<nums.size();k++){
+        sort(nums.begin(),nums.end());
+
+        for(int i=0;nums[i]<=0;i++){
+            for(int j=int(nums.size())-1;nums[j]>=0 and i<j+1;j--){
+                for(int k=i+1;k<j;k++){
                     if((nums[i]+nums[j]+nums[k])==0){
                          rec.push_back(nums[i]);
-                         rec.push_back(nums[j]);
                          rec.push_back(nums[k]);
+                         rec.push_back(nums[j]);
+                        switch (nums[i]){
+                            case 0:
+                                if(nums[j]==0){
+                                    rec2.push_back(rec);
+                                    return rec2;
+                                }
+                        }
                          sort(rec.begin(),rec.end());
                          for(vector<int>l:rec2){
                              if(rec==l){
@@ -49,21 +58,14 @@ int main(){
 
         Solution* text=new Solution();
         vector<int>vint;
-        vint.push_back(-4);
-        vint.push_back(-2);
+        vint.push_back(-3);
         vint.push_back(-2);
         vint.push_back(-2);
         vint.push_back(0);
-        vint.push_back(1);
-        vint.push_back(2);
-        vint.push_back(2);
-        vint.push_back(2);
-        vint.push_back(3);
-        vint.push_back(3);
-        vint.push_back(4);
-        vint.push_back(4);
-        vint.push_back(6);
-        vint.push_back(6);
+        vint.push_back(0);
+        vint.push_back(0);
+    vint.push_back(10);
+
 
         vector<vector<int>> output=text->threeSum(vint);
         for(vector<int>i:output){
